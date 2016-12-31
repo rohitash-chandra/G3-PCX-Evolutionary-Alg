@@ -1,13 +1,14 @@
 /*
  *  Dr. Rohitash Chandra, 2009  (c.rohitash@gmail.com)
 
-   aicrg.softwarefoundationfiji.org 
-   
+   aicrg.softwarefoundationfiji.org
+ 
+
 This program build on the G3-PCX C code from here: http://www.iitk.ac.in/kangal/codes.shtml
 
 The paper on the G3-PCX: " Kalyanmoy Deb, Ashish Anand, and Dhiraj Joshi, A Computationally Efficient Evolutionary Algorithm for Real-Parameter Optimization, Evolutionary Computation 2002 10:4, 371-395"
 
- In this code, CC is used for solving general function optimisation problems (Sphere, Rosenbrock, Rastrigin).
+ In this code, CC is used for solving general function optimisation problems (Ellip, Rosenbrock, Schwefel's).
  
 
  */
@@ -68,7 +69,16 @@ const int maxgen = 500000; //max number of function eval. (termination criteria)
 double d_not[PopSize];
 
 double seed,basic_seed;
+
+
  
+
+
+
+//*************************************************
+
+
+//-------------------------------------------------------
 
 class Individual{
 
@@ -295,6 +305,9 @@ void GeneticAlgorithm::Evaluate()
         	  BestIndex = row;
           	}
         }
+        
+       NumEval++; 
+
 }
 
 
@@ -352,10 +365,7 @@ double GeneticAlgorithm:: Objective(Layer x)
 
  
 #endif
-
-  
-NumEval++;
- //#endif
+ 
 
 
   return(fit);
@@ -400,7 +410,8 @@ void GeneticAlgorithm::find_parents()   //here the parents to be replaced are ad
       for(i=0;i<NumVariable;i++)
  	NewPop[kids+j].Chrome[i] = Population[mom[j]].Chrome[i];
 
-      NewPop[kids+j].Fitness = Objective(NewPop[kids+j].Chrome);
+      NewPop[kids+j].Fitness = Objective(NewPop[kids+j].Chrome); 
+     NumEval++; 
 
     }
 }
@@ -415,7 +426,8 @@ void GeneticAlgorithm::rep_parents()   //here the best (1 or 2) individuals repl
       for(i=0;i<NumVariable;i++)
        Population[mom[j]].Chrome[i]=NewPop[list[j]].Chrome[i];
 
-      Population[mom[j]].Fitness = Objective(Population[mom[j]].Chrome);
+      Population[mom[j]].Fitness = Objective(Population[mom[j]].Chrome); 
+     NumEval++; 
 
     }
 }
@@ -681,8 +693,8 @@ double GeneticAlgorithm:: MainAlgorithm(double RUN, ofstream &out1, ofstream &ou
 	   			      }
 
 	   			  // print out results after every x FEs
-	   	             if (  NumEval%100 ==0   )
-	   			   out1<<NumEval<<"    "<<tempfit<<endl;
+	   	              if (  NumEval%197 == 0   )
+	   			   out1<<NumEval<<"    "<<tempfit<<"  "<<endl;
 
     	}
 
@@ -777,5 +789,4 @@ int main(void)
  return 0;
 
 };
-
 
