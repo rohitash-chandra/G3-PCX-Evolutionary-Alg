@@ -1,10 +1,8 @@
 /*
  *  Dr. Rohitash Chandra, 2009  (c.rohitash@gmail.com)
 
-   aicrg.softwarefoundationfiji.org
-
-G3-PCX Evolutionary Algorithm is used as the sub-populations of Cooperative Coveolution.
-
+   aicrg.softwarefoundationfiji.org 
+   
 This program build on the G3-PCX C code from here: http://www.iitk.ac.in/kangal/codes.shtml
 
 The paper on the G3-PCX: " Kalyanmoy Deb, Ashish Anand, and Dhiraj Joshi, A Computationally Efficient Evolutionary Algorithm for Real-Parameter Optimization, Evolutionary Computation 2002 10:4, 371-395"
@@ -70,16 +68,7 @@ const int maxgen = 500000; //max number of function eval. (termination criteria)
 double d_not[PopSize];
 
 double seed,basic_seed;
-
-
  
-
-
-
-//*************************************************
-
-
-//-------------------------------------------------------
 
 class Individual{
 
